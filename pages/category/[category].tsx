@@ -6,7 +6,7 @@ import ShopLayout1 from 'components/layouts/ShopLayout1';
 import { dispatch, useSelector } from '@/store/store';
 import { getCategories } from '@/store/slices/homeSlice';
 
-import { mockDataBanner } from '../chu-chu-shop';
+import { mockDataBanner } from '../shop-home';
 import { isEmpty } from 'lodash';
 import PromotionBanner from '@/pages-sections/promotion-banner';
 import FilterByTaxon from '@/pages-sections/filter-page/filter-by-taxon';

@@ -9,7 +9,7 @@ import { getCategories } from '@/store/slices/homeSlice';
 import ShopLayout1 from 'components/layouts/ShopLayout1';
 import PromotionBanner from '@/pages-sections/promotion-banner';
 
-import { mockDataBanner } from '../chu-chu-shop';
+import { mockDataBanner } from '../shop-home';
 
 const FilterPage = dynamic(
   () =>

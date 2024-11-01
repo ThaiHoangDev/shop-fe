@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import dynamic from 'next/dynamic';
 
 const MarketDynamic = dynamic(
-  () => import('./chu-chu-shop').then((mod) => mod.default),
+  () => import('./shop-home').then((mod) => mod.default),
   {
     ssr: false,
   }

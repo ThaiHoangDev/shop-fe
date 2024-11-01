@@ -31,6 +31,10 @@ type HomeState = {
   infoUser: any;
   logoAndBanner: any;
   addressInfo: any;
+  flashDeals: any;
+  newArrivals: any;
+  dealOfTheWeekList: any;
+  hotDealList: any
 };
 
 // ----------------------------------------------------------------------
@@ -47,6 +51,10 @@ const initialState: HomeState = {
   infoUser: null,
   logoAndBanner: null,
   addressInfo: null,
+  flashDeals: [],
+  newArrivals: [],
+  dealOfTheWeekList: [],
+  hotDealList: []
 };
 
 const slice = createSlice({
@@ -83,6 +91,22 @@ const slice = createSlice({
     getProductsBestSuccess(state, action) {
       state.isLoading = false;
       state.productsBest = action.payload;
+    },
+    getFlashDealsSuccess(state, action) {
+      state.isLoading = false;
+      state.flashDeals = action.payload;
+    },
+    getNewArrivalsSuccess(state, action) {
+      state.isLoading = false;
+      state.newArrivals = action.payload;
+    },
+    getDealOfTheWeekListSuccess(state, action) {
+      state.isLoading = false;
+      state.dealOfTheWeekList = action.payload;
+    },
+    getHotDealListSuccess(state, action) {
+      state.isLoading = false;
+      state.hotDealList = action.payload;
     },
     getCategoryBestSuccess(state, action) {
       state.isLoading = false;
@@ -185,8 +209,40 @@ export function getFlashDeals() {
     dispatch(slice.actions.startLoading());
     try {
       const res = await fashionShopService.getFlashDealsApi();
-
-      dispatch(slice.actions.getProductsBestSuccess(res));
+      dispatch(slice.actions.getFlashDealsSuccess(res));
+    } catch (error) {
+      dispatch(slice.actions.hasError(error));
+    }
+  };
+}
+export function getNewArrivals() {
+  return async () => {
+    dispatch(slice.actions.startLoading());
+    try {
+      const res = await fashionShopService.getNewArrivalsApi();
+      dispatch(slice.actions.getNewArrivalsSuccess(res));
+    } catch (error) {
+      dispatch(slice.actions.hasError(error));
+    }
+  };
+}
+export function getDealOfTheWeekList() {
+  return async () => {
+    dispatch(slice.actions.startLoading());
+    try {
+      const res = await fashionShopService.getDealOfTheWeekListApi();
+      dispatch(slice.actions.getDealOfTheWeekListSuccess(res));
+    } catch (error) {
+      dispatch(slice.actions.hasError(error));
+    }
+  };
+}
+export function getHotDealList() {
+  return async () => {
+    dispatch(slice.actions.startLoading());
+    try {
+      const res = await fashionShopService.getHotDealList();
+      dispatch(slice.actions.getHotDealListSuccess(res));
     } catch (error) {
       dispatch(slice.actions.hasError(error));
     }
@@ -232,10 +288,10 @@ export const multiActionCreator = () => {
   return async (dispatch: AppDispatch) => {
     const actionPromises = [
       dispatch(getFlashDeals()),
-      dispatch(getProducts()),
-      dispatch(getCategories()),
-      dispatch(getProductsBest()),
-      dispatch(getCategoriesBestSell()),
+      dispatch(getNewArrivals()),
+      dispatch(getDealOfTheWeekList()),
+      dispatch(getHotDealList()),
+      // dispatch(getCategoriesBestSell()),
     ];
 
     return (

@@ -7,7 +7,7 @@ const getFlashDealsApi = async (): Promise<Product[]> => {
   return response.data;
 };
 
-const getNewArrivals = async (): Promise<Product[]> => {
+const getNewArrivalsApi = async (): Promise<Product[]> => {
   const response = await axios.get("/api/fashion-1/products?tag=new");
   return response.data;
 };
@@ -22,7 +22,7 @@ const getServiceList = async (): Promise<Service[]> => {
   return response.data;
 };
 
-const getDealOfTheWeekList = async () => {
+const getDealOfTheWeekListApi = async () => {
   const response = await axios.get("/api/fashion-1/deal-of-the-week");
   return response.data;
 };
@@ -34,9 +34,9 @@ const getHotDealList = async () => {
 
 export default {
   getFlashDealsApi,
-  getNewArrivals,
+  getNewArrivalsApi,
   getServiceList,
   getHotDealList,
   getTrendingItems,
-  getDealOfTheWeekList,
+  getDealOfTheWeekListApi,
 };
